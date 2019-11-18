@@ -7,10 +7,10 @@ public class TableDrop : MonoBehaviour
 {
     public Text TF;
     public Text Count;
-    public string tfok = "SUCCESS";
-    public string tfno = "FAILED";
-    public bool tfjuice;
-    public int count = 0;
+    public string tfok;
+    public string tfno;
+    bool tfjuice;
+    int count = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -37,14 +37,13 @@ public class TableDrop : MonoBehaviour
             TF.text = tfno;
         }
         Count.text = count.ToString();
-        tfjuice = false;
     }
     public void OnCollisionEnter(Collision target)
     {
         if (target.collider.CompareTag("Juice"))
         {
             Debug.Log("음료 선반 위에 올려 놓음");
-            GetComponent<Collider>().enabled = false;
+            //GetComponent<Collider>().enabled = false;
             tfjuice = true;
         }
         else
@@ -52,5 +51,14 @@ public class TableDrop : MonoBehaviour
             tfjuice = false;
         }
         JuiceOK();
+    }
+    public void OnCollisionExit(Collision target)
+    {
+        if (target.collider.CompareTag("Juice"))
+        {
+            Debug.Log("음료 선반 위에 올려 놓음");
+           // GetComponent<Collider>().enabled = false;
+            tfjuice = false;
+        }
     }
 }
