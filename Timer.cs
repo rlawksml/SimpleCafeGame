@@ -28,6 +28,12 @@ public class Timer : MonoBehaviour
         TimeText.text = "남은 시간 : " + t.ToString(); 
     }
 
+    void quit(){
+        if(time == 0)
+        Debug.Log("Quit");
+        Application.Quit();
+    }
+
 
 
 }
